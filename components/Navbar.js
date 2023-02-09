@@ -10,3 +10,20 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+
+const pages = ['Todos'];
+const Navbar = () => {
+    const [anchorElNav,
+        setAnchorElNav] =
+        React.useState(null);
+
+    const handleOpenNavMenu =
+        (event) => {
+            setAnchorElNav(event.currentTarget)
+        };
+
+    const handleCloseNavMenu = () => {
+        setAnchorElNav(null);
+    };
+};
+export default Navbar;
