@@ -126,5 +126,37 @@ export default function Home() {
   )
 }
 export async function getServerProps() {
-
+  [{
+    "title": "Going to the market",
+    "desription": "Going to the market",
+    "completed": false
+  },
+  {
+    "title": "Cooking lunch meal",
+    "description": "Cooking lunch meal",
+    "completed": false
+  },
+  {
+    "title": "Working on a website.",
+    "description": "Working on a website",
+    "completed": false
+  },
+  {
+    "title": "Watching an episode",
+    "description": "Watching an episode",
+    "completed": false
+  },
+  {
+    "title": "Learning how to code",
+    "description": "Learning how to code",
+    "completed": false
+  }
+  ]
+  let todos_path = join(__dirname, '..', '..', '..', 'data', 'todos.json');
+  let todos = await fs.promises.readFile(todos_path, 'utf8');
+  return {
+    props: {
+      "todos": JSON.parse(todos)
+    }
+  }
 }
