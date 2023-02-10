@@ -3,7 +3,7 @@ import Card from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 
-export deafault function
+export default function
     TodosCard({ todo }) {
     return (
         <Card>

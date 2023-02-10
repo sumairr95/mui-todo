@@ -2,7 +2,11 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
-
+import fs from 'fs';
+import { join } from 'path';
+import Navbar from '../components/Navbar';
+import Card from '../components/Card';
+import { Container, Grid } from '@mui/material';
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
@@ -120,4 +124,7 @@ export default function Home() {
       </main>
     </>
   )
+}
+export async function getServerProps() {
+
 }
