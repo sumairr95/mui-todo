@@ -53,9 +53,7 @@ export default function Home({ todos }) {
         <meta name="description" content="Todos app with Material UI" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <Navbar />
-
       <Container>
         {
           todos.length > 0 ? (
