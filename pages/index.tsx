@@ -15,6 +15,9 @@ interface todo {
   description: string;
   completed: boolean;
 }
+interface Props {
+  todos: todo[];
+}
 
 export async function getServerProps() {
   [{
