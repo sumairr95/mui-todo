@@ -10,6 +10,12 @@ import { Container, Grid } from '@mui/material';
 import TodosCard from '../components/Card';
 const inter = Inter({ subsets: ['latin'] })
 
+interface todo {
+  title: string;
+  description: string;
+  completed: boolean;
+}
+
 export async function getServerProps() {
   [{
     "title": "Going to the market",
