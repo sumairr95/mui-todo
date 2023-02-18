@@ -8,53 +8,30 @@ import Navbar from '../components/Navbar';
 import Card from '../components/Card';
 import { Container, Grid } from '@mui/material';
 import TodosCard from '../components/Card';
+
 const inter = Inter({ subsets: ['latin'] })
 
-interface todo {
+interface Todo {
   title: string;
   description: string;
   completed: boolean;
 }
+
 interface Props {
-  todos: todo[];
+  todos: Todo[];
 }
 
 export async function getServerProps() {
-  [{
-    "title": "Going to the market",
-    "desription": "Going to the market",
-    "completed": false
-  },
-  {
-    "title": "Cooking lunch meal",
-    "description": "Cooking lunch meal",
-    "completed": false
-  },
-  {
-    "title": "Working on a website.",
-    "description": "Working on a website",
-    "completed": false
-  },
-  {
-    "title": "Watching an episode",
-    "description": "Watching an episode",
-    "completed": false
-  },
-  {
-    "title": "Learning how to code",
-    "description": "Learning how to code",
-    "completed": false
-  }
-  ]
-  let todos_path = join(__dirname, '..', '..', '..', 'data', 'todos.json');
-  let todos = await fs.promises.readFile(todos_path, 'utf8');
+  const todos_path = join(__dirname, '..', '..', '..', 'data', 'todos.json');
+  const todos = await fs.promises.readFile(todos_path, 'utf8');
   return {
     props: {
-      "todos": JSON.parse(todos)
-    }
-  }
+      todos: JSON.parse(todos),
+    },
+  };
 }
-export default function Home({ todos }) {
+
+export default function Home({ todos }: Props) {
   return (
     <div>
       <Head>
@@ -64,20 +41,16 @@ export default function Home({ todos }) {
       </Head>
       <Navbar />
       <Container>
-        {
-          todos.length > 0 ? (
-            todos.map((todo, index) => (
-              <Grid key={index} marginBottom={4} marginTop={4}>
-                <Card todo={todo} key={index} />
-              </Grid>
-            ))
-          ) : (
-            <p>
-              No saved todos yet!!
-            </p>
-          )
-        }
+        {todos.length > 0 ? (
+          todos.map((todo, index) => (
+            <Grid key={index} marginBottom={4} marginTop={4}>
+              <Card todo={todo} key={index} />
+            </Grid>
+          ))
+        ) : (
+          <p>No saved todos yet!!</p>
+        )}
       </Container>
     </div>
-  )
+  );
 }
