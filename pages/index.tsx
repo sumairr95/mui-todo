@@ -1,15 +1,9 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from '@next/font/google'
-import styles from '@/styles/Home.module.css'
-import fs from 'fs';
+import { promises as fs } from 'fs';
 import { join } from 'path';
+import Head from 'next/head';
+import { Container, Grid } from '@mui/material';
 import Navbar from '../components/Navbar';
 import Card from '../components/Card';
-import { Container, Grid } from '@mui/material';
-import TodosCard from '../components/Card';
-
-const inter = Inter({ subsets: ['latin'] })
 
 interface Todo {
   title: string;
@@ -17,21 +11,21 @@ interface Todo {
   completed: boolean;
 }
 
-interface Props {
+interface HomeProps {
   todos: Todo[];
 }
 
-export async function getServerProps() {
-  const todos_path = join(__dirname, '..', '..', '..', 'data', 'todos.json');
-  const todos = await fs.promises.readFile(todos_path, 'utf8');
+export const getServerSideProps = async () => {
+  const todos_path = join(process.cwd(), 'data', 'todos.json');
+  const todos = await fs.readFile(todos_path, 'utf8');
   return {
     props: {
       todos: JSON.parse(todos),
     },
   };
-}
+};
 
-export default function Home({ todos }: Props) {
+const Home = ({ todos }: HomeProps) => {
   return (
     <div>
       <Head>
@@ -53,4 +47,6 @@ export default function Home({ todos }: Props) {
       </Container>
     </div>
   );
-}
+};
+
+export default Home;
