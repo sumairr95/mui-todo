@@ -4,7 +4,7 @@ import Head from 'next/head';
 import { Container, Grid } from '@mui/material';
 import Navbar from '../components/Navbar';
 import Card from '../components/Card';
-
+import { CardContent } from '@mui/material';
 interface Todo {
   title: string;
   description: string;
